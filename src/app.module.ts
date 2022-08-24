@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './app/users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { MoviesModule } from './app/movies/movies.module';
@@ -10,11 +10,7 @@ import { MoviesModule } from './app/movies/movies.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASS,
-      database: process.env.DB_NAME,
+      url: process.env.DATABASE_URL,
       cache: {
         type: 'redis',
         options: {
@@ -23,7 +19,6 @@ import { MoviesModule } from './app/movies/movies.module';
         },
       },
       entities: [__dirname + '/**/*.entity.{js,ts}'],
-      synchronize: true,
     }),
     UsersModule,
     AuthModule,

@@ -3,13 +3,15 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
   HttpCode,
   ParseIntPipe,
   UseGuards,
-  Req,
+  UseInterceptors,
+  ClassSerializerInterceptor,
+  CacheInterceptor,
 } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -18,11 +20,13 @@ import { MovieEntity } from './movie.entity';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('movies')
+@UseInterceptors(ClassSerializerInterceptor)
 @UseGuards(AuthGuard('jwt'))
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
   @Post()
+  @UseInterceptors(CacheInterceptor)
   @HttpCode(201)
   async create(@Body() createMovieDto: CreateMovieDto): Promise<MovieEntity> {
     const movie = await this.moviesService.create(createMovieDto);
@@ -30,6 +34,7 @@ export class MoviesController {
   }
 
   @Get()
+  @UseInterceptors(CacheInterceptor)
   async findAll(): Promise<MovieEntity[]> {
     return this.moviesService.findAll();
   }
@@ -39,14 +44,13 @@ export class MoviesController {
     return this.moviesService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @HttpCode(201)
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateMovieDto: UpdateMovieDto,
-  ): Promise<MovieEntity> {
-    this.moviesService.update(id, updateMovieDto);
-    return this.moviesService.findOne(id);
+  ) {
+    return await this.moviesService.update(id, updateMovieDto);
   }
 
   @Delete(':id')

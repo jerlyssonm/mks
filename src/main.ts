@@ -9,18 +9,15 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
-  // const config = new DocumentBuilder()
-  //   .setTitle('CRUD MFS')
-  //   .setDescription(
-  //     'crud de um catalogo de filmes onde só acessa com uso de token de autenticação',
-  //   )
+  // const swaggerConfig = new DocumentBuilder()
+  //   .setTitle('API com NestJS')
+  //   .setDescription('API desenvolvido para test com NestJS')
   //   .setVersion('1.0')
-  //   .addTag('users')
   //   .build();
 
-  // const document = SwaggerModule.createDocument(app, config);
+  // const document = SwaggerModule.createDocument(app, swaggerConfig);
   // SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
