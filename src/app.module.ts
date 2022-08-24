@@ -15,6 +15,13 @@ import { MoviesModule } from './app/movies/movies.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
+      cache: {
+        type: 'redis',
+        options: {
+          host: process.env.DB_HOST,
+          port: 6379,
+        },
+      },
       entities: [__dirname + '/**/*.entity.{js,ts}'],
       synchronize: true,
     }),
