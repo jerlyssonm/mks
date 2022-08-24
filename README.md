@@ -3,6 +3,12 @@
 
 um api simples de um catalogo de filmes, onde um usuario autorizado pode criar, ver, editar e deletar um filme
 
+Criação de usuario e autenticação funcionando e acesso as rotas dew filme apenas usuario autenticado!
+
+oque faltou: Documentação com swaager, cache com Redis e o deploy,
+
+ 
+
 ## Instalação
 necessario ter docker instalado na maquina 
 ```bash
