@@ -19,31 +19,39 @@ export class MoviesService {
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
-  async clearCache() {
-    const keys: string[] = await this.cacheManager.store.keys();
-    keys.forEach((key) => {
-      if (key.startsWith('MOVIE_CACHE_KEY')) {
-        this.cacheManager.del(key);
-      }
-    });
-  }
-
   async create(createMovieDto: CreateMovieDto) {
-    await this.clearCache();
     return this.movieRepository.save(createMovieDto);
   }
 
   async findAll() {
-    return this.movieRepository.find();
+    const allMoviesInCache: MovieEntity[] = await this.cacheManager.get(
+      'movieCache',
+    );
+    if (allMoviesInCache) {
+      return allMoviesInCache;
+    }
+    const allMovies: MovieEntity[] = await this.movieRepository.find();
+    await this.cacheManager.set('movieCache', allMovies);
+    return allMovies;
   }
 
   async findOne(id: number) {
+    const moviesIsCache: MovieEntity[] = await this.cacheManager.get(
+      'movieCache',
+    );
+    if (moviesIsCache) {
+      const movie: MovieEntity[] = moviesIsCache.filter(
+        (user) => user.id === id,
+      );
+      return movie[0];
+    }
+    await this.cacheManager.reset();
     return this.movieRepository.findOneBy({ id });
   }
 
   async update(id: number, updateMovieDto: UpdateMovieDto) {
-    await this.clearCache();
     this.movieRepository.update(id, updateMovieDto);
+    await this.cacheManager.reset();
     return { message: { fields_atualized: updateMovieDto } };
   }
 
@@ -52,7 +60,7 @@ export class MoviesService {
     if (!movie) {
       throw new NotFoundException('Movie Not found');
     }
+    await this.cacheManager.reset();
     await this.movieRepository.delete(id);
-    await this.clearCache();
   }
 }
