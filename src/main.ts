@@ -14,7 +14,6 @@ async function bootstrap() {
     .setDescription(
       'API Rest responsavel por um Catalogo de Filmes, onde apenas usuarios cadastrados tem permissão para acessar as rotas de filmes',
     )
-    .addBearerAuth()
     .setVersion('v1')
     .build();
 

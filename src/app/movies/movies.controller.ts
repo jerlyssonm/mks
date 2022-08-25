@@ -29,7 +29,6 @@ export class MoviesController {
 
   @Post()
   @UseInterceptors(CacheInterceptor)
-  @ApiBearerAuth()
   @HttpCode(201)
   @ApiOperation({ summary: 'Cria um novo filme!' })
   async create(@Body() createMovieDto: CreateMovieDto): Promise<MovieEntity> {
