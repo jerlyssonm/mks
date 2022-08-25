@@ -1,6 +1,7 @@
 # MKS - CRUD FILMES
 
-[DEPLOY DA APLICAÇÃO NO HEROKU](https://mks-crud.herokuapp.com/) 
+[LINK DO DEPLOY DA APLICAÇÃO NO HEROKU](https://mks-crud.herokuapp.com/)  
+segue na Documentação de rotas as urls necessarias para usar a aplicação...
 
 ## Descrição
 
