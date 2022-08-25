@@ -9,14 +9,17 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
-  // const swaggerConfig = new DocumentBuilder()
-  //   .setTitle('API com NestJS')
-  //   .setDescription('API desenvolvido para test com NestJS')
-  //   .setVersion('1.0')
-  //   .build();
+  const config = new DocumentBuilder()
+    .setTitle('MKS CRUD DE FILMES')
+    .setDescription(
+      'API Rest responsavel por um Catalogo de Filmes, onde apenas usuarios cadastrados tem permissão para acessar as rotas de filmes',
+    )
+    .addBearerAuth()
+    .setVersion('v1')
+    .build();
 
-  // const document = SwaggerModule.createDocument(app, swaggerConfig);
-  // SwaggerModule.setup('api', app, document);
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
 
   await app.listen(process.env.PORT || 3000);
 }
