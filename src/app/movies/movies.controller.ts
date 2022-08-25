@@ -57,9 +57,6 @@ export class MoviesController {
   @Delete(':id')
   @HttpCode(204)
   async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
-    const movie = this.findOne(id);
-    if (!movie) throw new NotFoundException('Movie Not found');
-    this.moviesService.remove(id);
-    return;
+    return this.moviesService.remove(id);
   }
 }

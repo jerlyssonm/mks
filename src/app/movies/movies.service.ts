@@ -1,4 +1,9 @@
-import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
+import {
+  CACHE_MANAGER,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -43,6 +48,10 @@ export class MoviesService {
   }
 
   async remove(id: number) {
+    const movie = await this.movieRepository.findOneBy({ id });
+    if (!movie) {
+      throw new NotFoundException('Movie Not found');
+    }
     await this.movieRepository.delete(id);
     await this.clearCache();
   }
