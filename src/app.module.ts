@@ -19,7 +19,6 @@ import { MoviesModule } from './app/movies/movies.module';
         },
       },
       entities: [__dirname + '/**/*.entity.{js,ts}'],
-      ssl: { rejectUnauthorized: false },
     }),
     UsersModule,
     AuthModule,
