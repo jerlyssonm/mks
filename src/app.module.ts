@@ -11,11 +11,11 @@ import * as redisStore from 'cache-manager-redis-store';
   imports: [
     CacheModule.register({
       isGlobal: true,
-      store: redisStore,
-      socket: {
-        host: 'localhost',
-        port: 6379,
-      },
+      // store: redisStore,
+      // socket: {
+      //   host: 'localhost',
+      //   port: 6379,
+      // },
     }),
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
