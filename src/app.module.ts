@@ -11,6 +11,7 @@ import { MoviesModule } from './app/movies/movies.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL,
+      synchronize: true,
       entities: [__dirname + '/**/*.entity.{js,ts}'],
       ssl: { rejectUnauthorized: false },
     }),
