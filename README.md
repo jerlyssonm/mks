@@ -1,11 +1,14 @@
 # MKS - CRUD FILMES
+
+[DEPLOY DA APLICAÇÃO NO HEROKU](https://mks-crud.herokuapp.com/) 
+
 ## Descrição
 
 um api simples de um catalogo de filmes, onde um usuario autorizado pode criar, ver, editar e deletar um filme
 
-Criação de usuario e autenticação funcionando e acesso as rotas dew filme apenas usuario autenticado!
+Criação de usuario e autenticação funcionando e acesso as rotas dew filme apenas usuario autenticado e em Deploy no heroku!
 
-oque faltou: Documentação com swaager, cache com Redis e o deploy,
+oque faltou: Documentação com swaager, cache com Redis,
 
  
 
