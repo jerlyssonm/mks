@@ -1,7 +1,7 @@
 # MKS - CRUD FILMES
 
 [LINK DO DEPLOY DA APLICAÇÃO NO HEROKU](https://mks-crud.herokuapp.com/)  
-segue na Documentação de rotas as urls necessarias para usar a aplicação...
+[DOCUMENTAÇÃO COM SWAGGER](https://mks-crud.herokuapp.com/docs)
 
 ## Descrição
 
@@ -35,12 +35,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 ### Depois dos passo acima e sua aplicação rodando siga a Documentaçao com Rotas
-
-# DOCUMENTAÇÂO DA API COM ROTAS
-
-devido ter me deparado com alguns erro do swagger resolvi domentar as rotas com postman
-
-[POSTMAN](https://documenter.getpostman.com/view/18336362/VUqvoEcx) <-- Clica aqui!
 
 
 ## Das Ferramentas requeridas
