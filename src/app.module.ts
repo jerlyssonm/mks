@@ -11,13 +11,6 @@ import { MoviesModule } from './app/movies/movies.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL,
-      cache: {
-        type: 'redis',
-        options: {
-          host: process.env.DB_HOST,
-          port: 6379,
-        },
-      },
       entities: [__dirname + '/**/*.entity.{js,ts}'],
     }),
     UsersModule,
