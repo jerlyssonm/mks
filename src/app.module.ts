@@ -12,6 +12,7 @@ import { MoviesModule } from './app/movies/movies.module';
       type: 'postgres',
       url: process.env.DATABASE_URL,
       entities: [__dirname + '/**/*.entity.{js,ts}'],
+      ssl: { rejectUnauthorized: false },
     }),
     UsersModule,
     AuthModule,
